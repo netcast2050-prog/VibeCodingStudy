@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(node -e ' *)",
+      "Bash(npx --yes tsx -e \"import { questions } from './src/data/questions.ts'; const counts = questions.reduce\\(\\(a,q\\)=>{a[q.category]=\\(a[q.category]||0\\)+1;return a;},{}\\); const diff = questions.reduce\\(\\(a,q\\)=>{a[q.difficulty]=\\(a[q.difficulty]||0\\)+1;return a;},{}\\); console.log\\('Total:', questions.length\\); console.log\\('By category:', counts\\); console.log\\('By difficulty:', diff\\); const dups = questions.map\\(q=>q.id\\).filter\\(\\(id,i,arr\\)=>arr.indexOf\\(id\\)!==i\\); console.log\\('Duplicate IDs:', dups\\); const bad = questions.filter\\(q=>!Number.isInteger\\(q.answer\\) || q.answer<0 || q.answer>3 || q.options.length!==4\\); console.log\\('Malformed:', bad.length\\);\")"
+    ]
+  }
+}

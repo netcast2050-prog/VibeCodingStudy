@@ -1,0 +1,1447 @@
+ ▐▛███▜▌   Claude Code v2.1.133
+▝▜█████▛▘  Sonnet 4.6 · Claude Pro
+  ▘▘ ▝▝    D:\Users\netcast\vibecoding\study-02
+
+  Opus 4.7 xhigh is now available! · /model to switch
+
+✻ Conversation compacted (ctrl+o for history)
+
+  ⎿  Read index.html (205 lines)
+  ⎿  Referenced file style.css
+  ⎿  Read script.js (409 lines)
+  ⎿  Skills restored (init)
+
+● Let me read the current style.css before rewriting it.
+
+  Read 1 file (ctrl+o to expand)
+
+● Now I'll write the final style.css and script.js. Starting with style.css.
+
+● Write(style.css)
+  ⎿  Added 223 lines, removed 57 lines
+      107    box-shadow: var(--shadow-card);
+      108  }
+      109  
+      110 +/* 스크린 리더 전용 — 시각적으로 숨김 */                      
+      111 +.sr-only {                                                    
+      112 +  position: absolute;                                         
+      113 +  width: 1px;                                                 
+      114 +  height: 1px;                                                
+      115 +  padding: 0;                                                 
+      116 +  margin: -1px;                                               
+      117 +  overflow: hidden;                                           
+      118 +  clip: rect(0, 0, 0, 0);                                     
+      119 +  white-space: nowrap;                                        
+      120 +  border: 0;                                                  
+      121 +}                                                             
+      122 +                                                              
+      123  /* ══════════════════════════════════════════════
+      124     헤더
+      125     ══════════════════════════════════════════════ */
+     ...
+      325  .today-label { font-size: 0.78rem; color: var(--today-label); 
+           }
+      326  .today-val   { font-size: 0.85rem; font-weight: 700; color: va
+           r(--today-val); }
+      327  
+      328 +/* 완료율 응원 메시지 */                                      
+      329 +.encourage-msg {                                              
+      330 +  font-size: 0.82rem;                                         
+      331 +  color: var(--text-muted);                                   
+      332 +  margin-top: 10px;                                           
+      333 +  min-height: 1.2em;                                          
+      334 +  transition: color 0.3s;                                     
+      335 +}                                                             
+      336 +                                                              
+      337 +.encourage-msg.celebrate {                                    
+      338 +  animation: celebrate 0.5s ease;                             
+      339 +  color: var(--accent);                                       
+      340 +  font-weight: 600;                                           
+      341 +}                                                             
+      342 +                                                              
+      343  /* ══════════════════════════════════════════════
+      344 +   오늘의 격언                                                
+      345 +   ══════════════════════════════════════════════ */          
+      346 +.quote-bar {                                                  
+      347 +  background: linear-gradient(135deg, #f0f4ff, #f5f0ff);      
+      348 +  border-left: 3px solid var(--accent);                       
+      349 +  border-radius: 8px;                                         
+      350 +  padding: 10px 14px;                                         
+      351 +  margin-bottom: 16px;                                        
+      352 +}                                                             
+      353 +                                                              
+      354 +[data-theme="dark"] .quote-bar {                              
+      355 +  background: linear-gradient(135deg, #1e2040, #24183a);      
+      356 +}                                                             
+      357 +                                                              
+      358 +.quote-text {                                                 
+      359 +  font-size: 0.82rem;                                         
+      360 +  color: var(--text-muted);                                   
+      361 +  font-style: italic;                                         
+      362 +  line-height: 1.5;                                           
+      363 +}                                                             
+      364 +                                                              
+      365 +/* ══════════════════════════════════════════════             
+      366     필터 버튼
+      367     ══════════════════════════════════════════════ */
+      368  .filter-row {
+     ...
+      396  .filter-btn.active[data-filter="study"]    { background: #8E44
+           AD; border-color: #8E44AD; color: #fff; }
+      397  
+      398  /* ══════════════════════════════════════════════
+      349 -   검색                                                       
+      399 +   검색 + 정렬                                                
+      400     ══════════════════════════════════════════════ */
+      351 -.search-row {                                                 
+      401 +.search-sort-row {                                            
+      402 +  display: flex;                                              
+      403 +  gap: 8px;                                                   
+      404    margin-bottom: 14px;
+      405  }
+      406  
+      407  #search-input {
+      356 -  width: 100%;                                                
+      408 +  flex: 1;                                                    
+      409    padding: 10px 14px;
+      410    border: 1.5px solid var(--border);
+      411    border-radius: 8px;
+     ...
+      415    background: var(--bg-input);
+      416    color: var(--text-primary);
+      417    transition: border-color 0.2s;
+      418 +  min-width: 0;                                               
+      419  }
+      420  
+      421  #search-input::placeholder { color: var(--text-muted); }
+      422  #search-input:focus         { border-color: var(--accent); }
+      370 -                                                              
+      371 -/* 브라우저 기본 x 버튼 스타일 */                             
+      423  #search-input::-webkit-search-cancel-button { cursor: pointer;
+            }
+      424  
+      425 +#sort-select {                                                
+      426 +  padding: 10px 8px;                                          
+      427 +  border: 1.5px solid var(--border);                          
+      428 +  border-radius: 8px;                                         
+      429 +  font-size: 0.82rem;                                         
+      430 +  font-family: inherit;                                       
+      431 +  background: var(--bg-input);                                
+      432 +  color: var(--text-primary);                                 
+      433 +  cursor: pointer;                                            
+      434 +  outline: none;                                              
+      435 +  transition: border-color 0.2s;                              
+      436 +  flex-shrink: 0;                                             
+      437 +}                                                             
+      438 +                                                              
+      439 +#sort-select:focus { border-color: var(--accent); }           
+      440 +                                                              
+      441  /* ══════════════════════════════════════════════
+      442     할 일 추가 입력
+      443     ══════════════════════════════════════════════ */
+     ...
+      591  .delete-btn:hover { color: #ef4444; background: #fef2f2; }
+      592  [data-theme="dark"] .delete-btn:hover { background: #3d1212; }
+      593  
+      594 +/* ── 드래그 핸들 (수동 정렬 모드) ── */                      
+      595 +.drag-handle {                                                
+      596 +  cursor: grab;                                               
+      597 +  color: var(--text-faint);                                   
+      598 +  font-size: 1.1rem;                                          
+      599 +  padding: 0 2px;                                             
+      600 +  flex-shrink: 0;                                             
+      601 +  user-select: none;                                          
+      602 +  line-height: 1;                                             
+      603 +  touch-action: none;                                         
+      604 +}                                                             
+      605 +                                                              
+      606 +.drag-handle:active { cursor: grabbing; }                     
+      607 +                                                              
+      608 +/* ── 드래그 앤 드롭 상태 ── */                               
+      609 +.task-item.dragging {                                         
+      610 +  opacity: 0.4;                                               
+      611 +  border-style: dashed;                                       
+      612 +}                                                             
+      613 +                                                              
+      614 +.task-item.drag-over {                                        
+      615 +  border-color: var(--accent);                                
+      616 +  background: var(--bg-edit);                                 
+      617 +}                                                             
+      618 +                                                              
+      619  /* ══════════════════════════════════════════════
+      620     인라인 수정
+      621     ══════════════════════════════════════════════ */
+     ...
+      698  }
+      699  
+      700  /* ══════════════════════════════════════════════
+      609 -   키보드 단축키 피드백 토스트                                
+      701 +   데이터 관리 패널                                           
+      702     ══════════════════════════════════════════════ */
+      611 -.shortcuts-hint {                                             
+      703 +.data-panel {                                                 
+      704 +  display: flex;                                              
+      705 +  align-items: center;                                        
+      706 +  gap: 8px;                                                   
+      707 +  margin-top: 16px;                                           
+      708 +  padding-top: 16px;                                          
+      709 +  border-top: 1.5px solid var(--border-light);                
+      710 +  flex-wrap: wrap;                                            
+      711 +}                                                             
+      712 +                                                              
+      713 +.data-panel-label {                                           
+      714 +  font-size: 0.72rem;                                         
+      715 +  font-weight: 700;                                           
+      716 +  color: var(--text-muted);                                   
+      717 +  text-transform: uppercase;                                  
+      718 +  letter-spacing: 0.07em;                                     
+      719 +  flex-shrink: 0;                                             
+      720 +}                                                             
+      721 +                                                              
+      722 +.data-btn {                                                   
+      723 +  padding: 7px 14px;                                          
+      724 +  border: 1.5px solid var(--border);                          
+      725 +  border-radius: 7px;                                         
+      726 +  background: transparent;                                    
+      727 +  font-size: 0.8rem;                                          
+      728 +  font-family: inherit;                                       
+      729 +  color: var(--text-secondary);                               
+      730 +  cursor: pointer;                                            
+      731 +  min-height: 34px;                                           
+      732 +  transition: border-color 0.15s, color 0.15s, background 0.15
+          +s;                                                            
+      733 +}                                                             
+      734 +                                                              
+      735 +.data-btn:hover {                                             
+      736 +  border-color: var(--accent);                                
+      737 +  color: var(--accent);                                       
+      738 +  background: var(--bg-dash);                                 
+      739 +}                                                             
+      740 +                                                              
+      741 +/* ══════════════════════════════════════════════             
+      742 +   토스트 알림 (하단 우측 고정)                               
+      743 +   ══════════════════════════════════════════════ */          
+      744 +.toast {                                                      
+      745    position: fixed;
+      746    bottom: 24px;
+      747    right: 24px;
+      748    background: var(--text-primary);
+      749    color: var(--bg-card);
+      750    font-size: 0.8rem;
+      618 -  padding: 8px 16px;                                          
+      751 +  padding: 10px 16px;                                         
+      752    border-radius: 8px;
+      753    opacity: 0;
+      754    pointer-events: none;
+      755    transition: opacity 0.2s ease;
+      623 -  z-index: 100;                                               
+      756 +  z-index: 200;                                               
+      757    white-space: nowrap;
+      758 +  display: flex;                                              
+      759 +  align-items: center;                                        
+      760 +  gap: 12px;                                                  
+      761 +  max-width: calc(100vw - 48px);                              
+      762  }
+      763  
+      627 -.shortcuts-hint.show {                                        
+      764 +.toast.show {                                                 
+      765    opacity: 1;
+      766 +  pointer-events: auto;                                       
+      767  }
+      768  
+      631 -/* ══════════════════════════════════════════════             
+      632 -   애니메이션                                                 
+      633 -   ══════════════════════════════════════════════ */          
+      634 -@keyframes fadeSlideIn {                                      
+      635 -  from { opacity: 0; transform: translateY(-10px); }          
+      636 -  to   { opacity: 1; transform: translateY(0); }              
+      769 +/* Undo 버튼 (토스트 내부) */                                 
+      770 +.undo-btn {                                                   
+      771 +  background: var(--accent);                                  
+      772 +  color: #fff;                                                
+      773 +  border: none;                                               
+      774 +  border-radius: 5px;                                         
+      775 +  padding: 4px 10px;                                          
+      776 +  font-size: 0.75rem;                                         
+      777 +  font-family: inherit;                                       
+      778 +  font-weight: 600;                                           
+      779 +  cursor: pointer;                                            
+      780 +  flex-shrink: 0;                                             
+      781 +  transition: background 0.15s;                               
+      782  }
+      783  
+      639 -@keyframes fadeOut {                                          
+      640 -  from { opacity: 1; transform: scale(1) translateY(0); }     
+      641 -  to   { opacity: 0; transform: scale(0.96) translateY(-6px); 
+          -}                                                             
+      642 -}                                                             
+      784 +.undo-btn:hover { background: var(--accent-hover); }          
+      785  
+      644 -@keyframes checkPulse {                                       
+      645 -  0%   { transform: translateX(0); }                          
+      646 -  35%  { transform: translateX(5px); }                        
+      647 -  100% { transform: translateX(0); }                          
+      648 -}                                                             
+      649 -                                                              
+      650 -.task-item.entering { animation: fadeSlideIn 0.25s ease both; 
+          -}                                                             
+      651 -.task-item.removing { animation: fadeOut 0.2s ease forwards; p
+          -ointer-events: none; }                                        
+      652 -.task-item.toggling { animation: checkPulse 0.3s ease; }      
+      653 -                                                              
+      654 -@keyframes shakeInput {                                       
+      655 -  0%,100% { transform: translateX(0); }                       
+      656 -  20%      { transform: translateX(-6px); }                   
+      657 -  40%      { transform: translateX(6px); }                    
+      658 -  60%      { transform: translateX(-4px); }                   
+      659 -  80%      { transform: translateX(4px); }                    
+      660 -}                                                             
+      661 -                                                              
+      786  /* ══════════════════════════════════════════════
+      787     키보드 단축키 패널
+      788     ══════════════════════════════════════════════ */
+     ...
+      856  }
+      857  
+      858  /* ══════════════════════════════════════════════
+      859 +   애니메이션                                                 
+      860 +   ══════════════════════════════════════════════ */          
+      861 +@keyframes fadeSlideIn {                                      
+      862 +  from { opacity: 0; transform: translateY(-10px); }          
+      863 +  to   { opacity: 1; transform: translateY(0); }              
+      864 +}                                                             
+      865 +                                                              
+      866 +@keyframes fadeOut {                                          
+      867 +  from { opacity: 1; transform: scale(1) translateY(0); }     
+      868 +  to   { opacity: 0; transform: scale(0.96) translateY(-6px); 
+          +}                                                             
+      869 +}                                                             
+      870 +                                                              
+      871 +@keyframes checkPulse {                                       
+      872 +  0%   { transform: translateX(0); }                          
+      873 +  35%  { transform: translateX(5px); }                        
+      874 +  100% { transform: translateX(0); }                          
+      875 +}                                                             
+      876 +                                                              
+      877 +@keyframes shakeInput {                                       
+      878 +  0%,100% { transform: translateX(0); }                       
+      879 +  20%      { transform: translateX(-6px); }                   
+      880 +  40%      { transform: translateX(6px); }                    
+      881 +  60%      { transform: translateX(-4px); }                   
+      882 +  80%      { transform: translateX(4px); }                    
+      883 +}                                                             
+      884 +                                                              
+      885 +@keyframes celebrate {                                        
+      886 +  0%   { transform: scale(1); }                               
+      887 +  50%  { transform: scale(1.06); }                            
+      888 +  100% { transform: scale(1); }                               
+      889 +}                                                             
+      890 +                                                              
+      891 +.task-item.entering { animation: fadeSlideIn 0.25s ease both; 
+          +}                                                             
+      892 +.task-item.removing { animation: fadeOut 0.2s ease forwards; p
+          +ointer-events: none; }                                        
+      893 +.task-item.toggling { animation: checkPulse 0.3s ease; }      
+      894 +                                                              
+      895 +/* ══════════════════════════════════════════════             
+      896     반응형 — 모바일 (max-width: 480px)
+      897     ══════════════════════════════════════════════ */
+      898  @media (max-width: 480px) {
+     ...
+      907  
+      908    h1 { font-size: 1.35rem; }
+      909  
+      749 -  /* 테마 레이블 숨김 */                                      
+      910    .theme-label { display: none; }
+      911  
+      752 -  .dashboard {                                                
+      753 -    padding: 14px 14px;                                       
+      754 -  }                                                           
+      912 +  .dashboard { padding: 14px 14px; }                          
+      913  
+      914    .dash-cat-list { gap: 10px; }
+      915    .mini-track    { width: 30px; }
+      916  
+      759 -  /* 필터 버튼 */                                             
+      917    .filter-btn {
+      918      padding: 7px 14px;
+      919      font-size: 0.82rem;
+      920      min-height: 38px;
+      921    }
+      922  
+      766 -  /* 입력 영역: 텍스트 필드를 전체 너비로 */                  
+      767 -  .input-row { flex-wrap: wrap; }                             
+      923 +  /* 검색+정렬 행: 세로 쌓기 */                               
+      924 +  .search-sort-row { flex-wrap: wrap; }                       
+      925 +  #search-input    { flex: 1 1 100%; }                        
+      926 +  #sort-select     { flex: 1; }                               
+      927  
+      769 -  #task-input         { flex: 1 1 100%; }                     
+      770 -  #category-select    { flex: 1; }                            
+      771 -  #add-btn            { flex: 1; }                            
+      928 +  /* 입력 행: 텍스트 필드 전체 너비 */                        
+      929 +  .input-row    { flex-wrap: wrap; }                          
+      930 +  #task-input   { flex: 1 1 100%; }                           
+      931 +  #category-select { flex: 1; }                               
+      932 +  #add-btn         { flex: 1; }                               
+      933  
+      773 -  /* 할 일 항목 */                                            
+      934    .task-item  { padding: 12px 12px; gap: 10px; }
+      935    .task-text  { font-size: 0.9rem; }
+      936  
+      777 -  /* 삭제 버튼 — 터치 타겟 확대 */                            
+      778 -  .delete-btn {                                               
+      779 -    min-width: 36px;                                          
+      780 -    min-height: 36px;                                         
+      781 -  }                                                           
+      937 +  .delete-btn { min-width: 36px; min-height: 36px; }          
+      938  
+      783 -  /* 모바일에서 단축키 패널 숨김 */                           
+      784 -  .shortcuts-panel {                                          
+      785 -    display: none;                                            
+      939 +  /* 데이터 패널: 버튼 크기 조정 */                           
+      940 +  .data-btn { flex: 1; justify-content: center; }             
+      941 +                                                              
+      942 +  /* 토스트: 좌우 여백 */                                     
+      943 +  .toast {                                                    
+      944 +    bottom: 16px;                                             
+      945 +    right: 12px;                                              
+      946 +    left: 12px;                                               
+      947 +    white-space: normal;                                      
+      948 +    max-width: none;                                          
+      949 +    flex-wrap: wrap;                                          
+      950    }
+      951 +                                                              
+      952 +  .shortcuts-panel { display: none; }                         
+      953  }
+
+● Now the complete script.js:
+
+● Write(script.js)
+  ⎿  Added 386 lines, removed 64 lines
+       1 +// ── 저장소 키 ───────────────────────────────────────────────
+         +───                                                            
+       2  const STORAGE_KEY = 'my-tasks';
+       3  const FILTER_KEY  = 'my-tasks-filter';
+       4  const THEME_KEY   = 'my-tasks-theme';
+       5 +const SORT_KEY    = 'my-tasks-sort';                           
+       6  
+       7 +// ── 카테고리 정의 ───────────────────────────────────────────
+         +───                                                            
+       8  const CATEGORIES = {
+       9    work:     { label: '업무', color: '#4A90E2' },
+      10    personal: { label: '개인', color: '#27AE60' },
+      11    study:    { label: '공부', color: '#8E44AD' },
+      12  };
+      13  
+      11 -// ── 앱 상태 ─────────────────────────────────────────────────
+         -─                                                              
+      14 +// ── 오늘의 격언 목록 (날짜 기반으로 하루 한 개 노출) ────────
+         +──                                                             
+      15 +const QUOTES = [                                               
+      16 +  { text: '오늘 할 수 있는 일을 내일로 미루지 마라.', author: '
+         +벤자민 프랭클린' },                                            
+      17 +  { text: '천 리 길도 한 걸음부터.', author: '노자' },         
+      18 +  { text: '작은 일에 최선을 다하는 사람만이 큰 일도 해낼 수 있 
+         +다.', author: '세네카' },                                      
+      19 +  { text: '당신이 할 수 있다고 생각하든, 할 수 없다고 생각하든 
+         +당신이 옳다.', author: '헨리 포드' },                          
+      20 +  { text: '완벽함이란 더 이상 뺄 것이 없을 때 달성된다.', autho
+         +r: '생텍쥐페리' },                                             
+      21 +  { text: '지금 이 순간이 당신이 가진 전부다. 지금을 살아라.', 
+         +author: '에크하르트 톨레' },                                   
+      22 +  { text: '실패는 다시 시작할 기회다, 더 현명하게.', author: ' 
+         +헨리 포드' },                                                  
+      23 +  { text: '성공이란 열정을 잃지 않고 실패에서 실패로 나아가는  
+         +것이다.', author: '윈스턴 처칠' },                             
+      24 +  { text: '꿈을 계속 간직하고 있으면 반드시 실현할 때가 온다.',
+         + author: '괴테' },                                             
+      25 +  { text: '매일 조금씩 발전하면, 결국 큰 변화가 만들어진다.', a
+         +uthor: '앤서니 로빈스' },                                      
+      26 +  { text: '시간은 우리가 가장 원하지만 가장 낭비하는 것이다.', 
+         +author: '윌리엄 펜' },                                         
+      27 +  { text: '자신을 이기는 자가 가장 강한 자다.', author: '공자' 
+         +},                                                             
+      28 +  { text: '준비된 자에게 기회는 반드시 온다.', author: '루이 파
+         +스퇴르' },                                                     
+      29 +];                                                             
+      30  
+      13 -let tasks         = load();                                    
+      14 -let activeFilter  = localStorage.getItem(FILTER_KEY) ?? 'all'; 
+      15 -let searchQuery   = '';                                        
+      16 -let isDark        = localStorage.getItem(THEME_KEY) === 'dark';
+      17 -let lastAddedId   = null;                                      
+      18 -let lastToggledId = null;                                      
+      19 -let toastTimer    = null;                                      
+      31 +// ── 완료율별 응원 메시지 ────────────────────────────────────
+         +────                                                           
+      32 +// 완료율 0%일 때는 메시지 없음                                
+      33 +const ENCOURAGEMENTS = [                                       
+      34 +  { min: 1,   max: 29,  msg: '시작이 반이에요! 첫 발을 내딛었군
+         +요.' },                                                        
+      35 +  { min: 30,  max: 59,  msg: '절반을 향해 달려가고 있어요. 잘  
+         +하고 있어요!' },                                               
+      36 +  { min: 60,  max: 89,  msg: '거의 다 왔어요! 마지막 스퍼트!' }
+         +,                                                              
+      37 +  { min: 90,  max: 99,  msg: '대단해요! 거의 완성 단계예요.' },
+      38 +  { min: 100, max: 100, msg: '모든 할 일을 완료했어요! 최고예요
+         +!' },                                                          
+      39 +];                                                             
+      40  
+      21 -// ── DOM 참조 ────────────────────────────────────────────────
+         -─                                                              
+      41 +// ── 앱 상태 ─────────────────────────────────────────────────
+         +─                                                              
+      42 +let tasks                = load();                             
+      43 +let activeFilter         = localStorage.getItem(FILTER_KEY) ?? 
+         +'all';                                                         
+      44 +let sortMode             = localStorage.getItem(SORT_KEY)   ?? 
+         +'newest';                                                      
+      45 +let searchQuery          = '';                                 
+      46 +let isDark               = localStorage.getItem(THEME_KEY) === 
+         +'dark';                                                        
+      47 +let lastAddedId          = null;                               
+      48 +let lastToggledId        = null;                               
+      49 +let toastTimer           = null;   // 토스트 숨김 타이머       
+      50 +let undoTimer            = null;   // undo 스택 만료 타이머 (5 
+         +초)                                                            
+      51 +let undoStack            = null;   // { task, index } — 마지막 
+         +삭제 1건                                                       
+      52 +let pendingDuplicateText = null;   // 중복 경고 후 한 번 더 누 
+         +르면 추가 허용                                                 
+      53 +let dragSrcId            = null;   // 드래그 중인 항목의 id    
+      54 +let saveTimer            = null;   // 디바운스 저장 타이머     
+      55 +let searchTimer          = null;   // 디바운스 검색 타이머     
+      56  
+      57 +// ── DOM 참조 ────────────────────────────────────────────────
+         +─                                                              
+      58  const input             = document.getElementById('task-input')
+          ;
+      59  const categorySelect    = document.getElementById('category-sel
+          ect');
+      60  const addBtn            = document.getElementById('add-btn');
+      61  const list              = document.getElementById('task-list');
+      62  const filterBtns        = document.querySelectorAll('.filter-bt
+          n');
+      63  const searchInput       = document.getElementById('search-input
+          ');
+      64 +const sortSelect        = document.getElementById('sort-select'
+         +);                                                             
+      65  const themeToggle       = document.getElementById('theme-toggle
+          ');
+      66  const themeLabel        = document.getElementById('theme-label'
+          );
+      67  const clearCompletedBtn = document.getElementById('clear-comple
+          ted-btn');
+      68  const listFooter        = document.getElementById('list-footer'
+          );
+      33 -const shortcutsHint     = document.getElementById('shortcuts-hi
+         -nt');                                                          
+      69 +const exportBtn         = document.getElementById('export-btn')
+         +;                                                              
+      70 +const importBtn         = document.getElementById('import-btn')
+         +;                                                              
+      71 +const importFile        = document.getElementById('import-file'
+         +);                                                             
+      72 +const toast             = document.getElementById('toast');    
+      73 +const srAnnouncer       = document.getElementById('sr-announcer
+         +');                                                            
+      74 +const progressTrack     = document.getElementById('progress-tra
+         +ck');                                                          
+      75 +const encourageMsg      = document.getElementById('encourage-ms
+         +g');                                                           
+      76 +const quoteText         = document.getElementById('quote-text')
+         +;                                                              
+      77  
+      78  // ── 초기화 ──────────────────────────────────────────────────
+          ─
+      36 -                                                               
+      37 -applyTheme(isDark, false); // 초기 테마 적용 (전환 없이)       
+      79 +applyTheme(isDark, false);                                     
+      80  renderFilters();
+      81 +sortSelect.value = sortMode;                                   
+      82 +showDailyQuote();                                              
+      83  render();
+      84  
+      85  // ── 이벤트 리스너 ───────────────────────────────────────────
+          ──
+      42 -                                                               
+      86  addBtn.addEventListener('click', addTask);
+      87  input.addEventListener('keydown', (e) => { if (e.key === 'Enter
+          ') addTask(); });
+      88  
+     ...
+       90    btn.addEventListener('click', () => setFilter(btn.dataset.fi
+           lter));
+       91  });
+       92  
+       93 +// 검색: 200ms 디바운스로 불필요한 렌더 감소                  
+       94  searchInput.addEventListener('input', () => {
+       51 -  searchQuery = searchInput.value.trim();                     
+       95 +  clearTimeout(searchTimer);                                  
+       96 +  searchTimer = setTimeout(() => {                            
+       97 +    searchQuery = searchInput.value.trim();                   
+       98 +    render();                                                 
+       99 +  }, 200);                                                    
+      100 +});                                                           
+      101 +                                                              
+      102 +sortSelect.addEventListener('change', () => {                 
+      103 +  sortMode = sortSelect.value;                                
+      104 +  localStorage.setItem(SORT_KEY, sortMode);                   
+      105    render();
+      106  });
+      107  
+      108  themeToggle.addEventListener('click', toggleTheme);
+      109  clearCompletedBtn.addEventListener('click', clearCompleted);
+      110 +exportBtn.addEventListener('click', exportData);              
+      111 +importBtn.addEventListener('click', () => importFile.click());
+      112 +importFile.addEventListener('change', importData);            
+      113  
+      114  // ── 키보드 단축키 ──────────────────────────────────────────
+           ───
+       59 -                                                              
+      115  document.addEventListener('keydown', (e) => {
+       61 -  // 입력 필드 포커스 중에는 단축키 차단 (단, Alt+N/D는 항상  
+          -허용)                                                         
+       62 -  const inInput = ['INPUT', 'SELECT', 'TEXTAREA'].includes(doc
+          -ument.activeElement.tagName)                                  
+       63 -                  && !e.altKey;                               
+      116 +  // 입력 필드 포커스 중 Alt 없이 타이핑하면 단축키 차단      
+      117 +  const inInput = ['INPUT', 'SELECT', 'TEXTAREA'].includes(doc
+          +ument.activeElement.tagName) && !e.altKey;                    
+      118    if (inInput) return;
+       65 -                                                              
+      119    if (!e.altKey) return;
+      120  
+      121    const keyMap = {
+     ...
+      125      '2': () => { setFilter('work');     showToast('필터: 업무'
+           ); },
+      126      '3': () => { setFilter('personal'); showToast('필터: 개인'
+           ); },
+      127      '4': () => { setFilter('study');    showToast('필터: 공부'
+           ); },
+       75 -    'd': () => { toggleTheme();         showToast(isDark ? '다
+          -크 모드' : '라이트 모드'); },                                 
+       76 -    'D': () => { toggleTheme();         showToast(isDark ? '다
+          -크 모드' : '라이트 모드'); },                                 
+      128 +    'd': () => { toggleTheme(); showToast(isDark ? '다크 모드'
+          + : '라이트 모드'); },                                         
+      129 +    'D': () => { toggleTheme(); showToast(isDark ? '다크 모드'
+          + : '라이트 모드'); },                                         
+      130 +    'z': () => undoDelete(),                                  
+      131 +    'Z': () => undoDelete(),                                  
+      132    };
+      133  
+      134    const action = keyMap[e.key];
+       80 -  if (action) {                                               
+       81 -    e.preventDefault();                                       
+       82 -    action();                                                 
+       83 -  }                                                           
+      135 +  if (action) { e.preventDefault(); action(); }               
+      136  });
+      137  
+      138  // ═══════════════════════════════════════════════════════════
+           ═══
+     ...
+      152    }
+      153    document.documentElement.setAttribute('data-theme', dark ? '
+           dark' : 'light');
+      154    themeToggle.classList.toggle('active', dark);
+      155 +  themeToggle.setAttribute('aria-pressed', dark ? 'true' : 'fa
+          +lse');                                                        
+      156    themeLabel.textContent = dark ? '다크' : '라이트';
+      157  }
+      158  
+     ...
+      164    const text = input.value.trim();
+      165    if (!text) { shake(input); return; }
+      166  
+      167 +  // 미완료 항목 중 동일 텍스트가 있으면 경고 — 한 번 더 누르 
+          +면 추가 허용                                                  
+      168 +  const isDuplicate = tasks.some((t) => t.text === text && !t.
+          +completed);                                                   
+      169 +  if (isDuplicate && pendingDuplicateText !== text) {         
+      170 +    pendingDuplicateText = text;                              
+      171 +    showToast(`이미 있는 할 일입니다. 한 번 더 추가하려면 다시
+          + 누르세요.`);                                                 
+      172 +    return;                                                   
+      173 +  }                                                           
+      174 +  pendingDuplicateText = null;                                
+      175 +                                                              
+      176    const task = {
+      177      id: Date.now(),
+      178      text,
+     ...
+      183    lastAddedId = task.id;
+      184    tasks.push(task);
+      185    input.value = '';
+      124 -  save();                                                     
+      186 +  debouncedSave();                                            
+      187    render();
+      188 +  announce(`할 일 추가됨: ${text}`);                          
+      189  }
+      190  
+      191  function deleteTask(id) {
+      129 -  const li = list.querySelector(`[data-id="${id}"]`);         
+      130 -  tasks = tasks.filter((t) => t.id !== id);                   
+      131 -  save();                                                     
+      192 +  const idx = tasks.findIndex((t) => t.id === id);            
+      193 +  if (idx === -1) return;                                     
+      194 +  const task = tasks[idx];                                    
+      195 +  const li   = list.querySelector(`[data-id="${id}"]`);       
+      196  
+      197 +  // splice로 삭제하고 undo 스택에 저장                       
+      198 +  tasks.splice(idx, 1);                                       
+      199 +  undoStack = { task, index: idx };                           
+      200 +  debouncedSave();                                            
+      201 +                                                              
+      202    if (li) {
+      203      li.classList.add('removing');
+      135 -    li.addEventListener('animationend', render, { once: true }
+          -);                                                            
+      204 +    li.addEventListener('animationend', () => {               
+      205 +      render();                                               
+      206 +      showUndoToast(task.text);                               
+      207 +    }, { once: true });                                       
+      208    } else {
+      209      render();
+      210 +    showUndoToast(task.text);                                 
+      211    }
+      212  }
+      213  
+     ...
+      216    if (!task) return;
+      217    task.completed = !task.completed;
+      218    lastToggledId = id;
+      146 -  save();                                                     
+      219 +  debouncedSave();                                            
+      220    render();
+      221  }
+      222  
+     ...
+      225    if (count === 0) return;
+      226    if (!confirm(`완료된 항목 ${count}개를 모두 삭제할까요?`)) r
+           eturn;
+      227    tasks = tasks.filter((t) => !t.completed);
+      155 -  save();                                                     
+      228 +  undoStack = null; // 일괄 삭제는 단건 undo 불가             
+      229 +  debouncedSave();                                            
+      230    render();
+      231  }
+      232  
+      233 +function undoDelete() {                                       
+      234 +  if (!undoStack) {                                           
+      235 +    showToast('되돌릴 삭제가 없습니다.');                     
+      236 +    return;                                                   
+      237 +  }                                                           
+      238 +  clearTimeout(undoTimer);                                    
+      239 +  const { task, index } = undoStack;                          
+      240 +  tasks.splice(index, 0, task); // 원래 위치에 복원           
+      241 +  undoStack = null;                                           
+      242 +  lastAddedId = task.id;                                      
+      243 +  debouncedSave();                                            
+      244 +  render();                                                   
+      245 +  announce(`복구됨: ${task.text}`);                           
+      246 +  showToast(`'${task.text}' 복구됨`);                         
+      247 +}                                                             
+      248 +                                                              
+      249  // ═══════════════════════════════════════════════════════════
+           ═══
+      250  //  필터
+      251  // ═══════════════════════════════════════════════════════════
+           ═══
+     ...
+      258  }
+      259  
+      260  // ═══════════════════════════════════════════════════════════
+           ═══
+      261 +//  정렬                                                      
+      262 +// ═══════════════════════════════════════════════════════════
+          +═══                                                           
+      263 +                                                              
+      264 +// 필터된 항목에 정렬을 적용하여 반환                         
+      265 +// 수동 정렬(manual)은 tasks[] 배열 순서 그대로 사용          
+      266 +function getSortedVisible(visible) {                          
+      267 +  if (sortMode === 'manual') return visible;                  
+      268 +                                                              
+      269 +  return [...visible].sort((a, b) => {                        
+      270 +    // 완료 항목은 항상 하단                                  
+      271 +    if (a.completed !== b.completed) return a.completed ? 1 : 
+          +-1;                                                           
+      272 +                                                              
+      273 +    switch (sortMode) {                                       
+      274 +      case 'oldest':   return new Date(a.createdAt) - new Date
+          +(b.createdAt);                                                
+      275 +      case 'category': return a.category.localeCompare(b.categ
+          +ory, 'ko');                                                   
+      276 +      case 'alpha':    return a.text.localeCompare(b.text, 'ko
+          +');                                                           
+      277 +      default:         return new Date(b.createdAt) - new Date
+          +(a.createdAt); // newest                                      
+      278 +    }                                                         
+      279 +  });                                                         
+      280 +}                                                             
+      281 +                                                              
+      282 +// ═══════════════════════════════════════════════════════════
+          +═══                                                           
+      283 +//  내보내기 / 가져오기                                       
+      284 +// ═══════════════════════════════════════════════════════════
+          +═══                                                           
+      285 +                                                              
+      286 +function exportData() {                                       
+      287 +  const json     = JSON.stringify(tasks, null, 2);            
+      288 +  const blob     = new Blob([json], { type: 'application/json'
+          + });                                                          
+      289 +  const url      = URL.createObjectURL(blob);                 
+      290 +  const anchor   = document.createElement('a');               
+      291 +  const filename = `my-tasks-${new Date().toISOString().slice(
+          +0, 10)}.json`;                                                
+      292 +  anchor.href     = url;                                      
+      293 +  anchor.download = filename;                                 
+      294 +  anchor.click();                                             
+      295 +  URL.revokeObjectURL(url);                                   
+      296 +  showToast('내보내기 완료');                                 
+      297 +}                                                             
+      298 +                                                              
+      299 +function importData(e) {                                      
+      300 +  const file = e.target.files[0];                             
+      301 +  if (!file) return;                                          
+      302 +  importFile.value = ''; // 동일 파일 재선택 허용             
+      303 +                                                              
+      304 +  const reader = new FileReader();                            
+      305 +  reader.onload = (ev) => {                                   
+      306 +    try {                                                     
+      307 +      const data = JSON.parse(ev.target.result);              
+      308 +      if (!Array.isArray(data)) throw new Error('not an array'
+          +);                                                            
+      309 +                                                              
+      310 +      if (tasks.length > 0) {                                 
+      311 +        // 기존 데이터가 있으면 합치기/교체 선택              
+      312 +        const merge = confirm(                                
+      313 +          `현재 할 일 ${tasks.length}개가 있습니다.\n` +      
+      314 +          `가져온 데이터와 합치겠습니까?\n` +                 
+      315 +          `(취소 선택 시 현재 데이터를 가져온 데이터로 교체합 
+          +니다.)`                                                       
+      316 +        );                                                    
+      317 +        if (merge) {                                          
+      318 +          // id 기준 중복 제거 후 합치기                      
+      319 +          const existingIds = new Set(tasks.map((t) => t.id));
+      320 +          const newItems    = data                            
+      321 +            .filter((t) => !existingIds.has(t.id))            
+      322 +            .map((t) => ({ category: 'work', ...t }));        
+      323 +          tasks = [...tasks, ...newItems];                    
+      324 +        } else {                                              
+      325 +          tasks = data.map((t) => ({ category: 'work', ...t })
+          +);                                                            
+      326 +        }                                                     
+      327 +      } else {                                                
+      328 +        tasks = data.map((t) => ({ category: 'work', ...t }));
+      329 +      }                                                       
+      330 +                                                              
+      331 +      debouncedSave();                                        
+      332 +      render();                                               
+      333 +      showToast(`가져오기 완료: ${data.length}개 항목`);      
+      334 +    } catch {                                                 
+      335 +      showToast('올바르지 않은 JSON 파일입니다.');            
+      336 +    }                                                         
+      337 +  };                                                          
+      338 +  reader.readAsText(file, 'utf-8');                           
+      339 +}                                                             
+      340 +                                                              
+      341 +// ═══════════════════════════════════════════════════════════
+          +═══                                                           
+      342 +//  드래그 앤 드롭 (수동 정렬 전용)                           
+      343 +// ═══════════════════════════════════════════════════════════
+          +═══                                                           
+      344 +                                                              
+      345 +function bindDnD(li, id) {                                    
+      346 +  if (sortMode !== 'manual') return;                          
+      347 +                                                              
+      348 +  li.setAttribute('draggable', 'true');                       
+      349 +                                                              
+      350 +  li.addEventListener('dragstart', (e) => {                   
+      351 +    dragSrcId = id;                                           
+      352 +    e.dataTransfer.effectAllowed = 'move';                    
+      353 +    // 브라우저가 드래그 고스트를 그리기 전 스타일 적용       
+      354 +    setTimeout(() => li.classList.add('dragging'), 0);        
+      355 +  });                                                         
+      356 +                                                              
+      357 +  li.addEventListener('dragend', () => {                      
+      358 +    li.classList.remove('dragging');                          
+      359 +    list.querySelectorAll('.drag-over').forEach((el) => el.cla
+          +ssList.remove('drag-over'));                                  
+      360 +    dragSrcId = null;                                         
+      361 +  });                                                         
+      362 +                                                              
+      363 +  li.addEventListener('dragover', (e) => {                    
+      364 +    e.preventDefault();                                       
+      365 +    e.dataTransfer.dropEffect = 'move';                       
+      366 +    // 이전 drag-over 해제 후 현재 항목에만 적용              
+      367 +    list.querySelectorAll('.drag-over').forEach((el) => el.cla
+          +ssList.remove('drag-over'));                                  
+      368 +    if (id !== dragSrcId) li.classList.add('drag-over');      
+      369 +  });                                                         
+      370 +                                                              
+      371 +  li.addEventListener('dragleave', () => li.classList.remove('
+          +drag-over'));                                                 
+      372 +                                                              
+      373 +  li.addEventListener('drop', (e) => {                        
+      374 +    e.preventDefault();                                       
+      375 +    li.classList.remove('drag-over');                         
+      376 +    if (dragSrcId === null || dragSrcId === id) return;       
+      377 +                                                              
+      378 +    const srcIdx  = tasks.findIndex((t) => t.id === dragSrcId)
+          +;                                                             
+      379 +    const destIdx = tasks.findIndex((t) => t.id === id);      
+      380 +    if (srcIdx === -1 || destIdx === -1) return;              
+      381 +                                                              
+      382 +    // tasks[] 배열에서 직접 순서 변경 — 이게 수동 정렬의 영구
+          + 순서                                                         
+      383 +    const [moved] = tasks.splice(srcIdx, 1);                  
+      384 +    tasks.splice(destIdx, 0, moved);                          
+      385 +    debouncedSave();                                          
+      386 +    render();                                                 
+      387 +  });                                                         
+      388 +}                                                             
+      389 +                                                              
+      390 +// ═══════════════════════════════════════════════════════════
+          +═══                                                           
+      391  //  인라인 수정
+      392  // ═══════════════════════════════════════════════════════════
+           ═══
+      393  
+     ...
+      401    li.querySelector('input[type="checkbox"]').style.visibility 
+           = 'hidden';
+      402    li.querySelector('.category-tag').style.display             
+           = 'none';
+      403    li.querySelector('.delete-btn').style.display               
+           = 'none';
+      404 +  const handle = li.querySelector('.drag-handle');            
+      405 +  if (handle) handle.style.display = 'none';                  
+      406  
+      185 -  const content = li.querySelector('.task-content');          
+      407 +  const content   = li.querySelector('.task-content');        
+      408    content.innerHTML = '';
+      409  
+      188 -  const editInput = document.createElement('input');          
+      410 +  const editInput     = document.createElement('input');      
+      411    editInput.type      = 'text';
+      412    editInput.className = 'edit-input';
+      413    editInput.value     = task.text;
+      414 +  editInput.setAttribute('aria-label', '할 일 수정');         
+      415  
+      193 -  const editCat = document.createElement('select');           
+      416 +  const editCat     = document.createElement('select');       
+      417    editCat.className = 'edit-cat-select';
+      418 +  editCat.setAttribute('aria-label', '카테고리 변경');        
+      419    Object.entries(CATEGORIES).forEach(([key, { label }]) => {
+      420      const opt       = document.createElement('option');
+      421      opt.value       = key;
+     ...
+      433      if (!newText) { cancelEdit(); return; }
+      434      task.text     = newText;
+      435      task.category = editCat.value;
+      212 -    save();                                                   
+      436 +    debouncedSave();                                          
+      437      render();
+      438    }
+      439  
+     ...
+      444      if (e.key === 'Escape') cancelEdit();
+      445    });
+      446  
+      447 +  // editInput → editCat 포커스 이동 시 취소되지 않도록 150ms 
+          +딜레이 활용                                                   
+      448    let blurTimer;
+      224 -  function onBlur() {                                         
+      225 -    blurTimer = setTimeout(() => {                            
+      226 -      if (document.activeElement !== editInput && document.act
+          -iveElement !== editCat) cancelEdit();                         
+      227 -    }, 150);                                                  
+      228 -  }                                                           
+      449 +  function onBlur()  { blurTimer = setTimeout(() => {         
+      450 +    if (document.activeElement !== editInput && document.activ
+          +eElement !== editCat) cancelEdit();                           
+      451 +  }, 150); }                                                  
+      452    function onFocus() { clearTimeout(blurTimer); }
+      453  
+      454    editInput.addEventListener('blur',  onBlur);
+     ...
+      463  
+      464  function renderFilters() {
+      465    filterBtns.forEach((btn) => {
+      243 -    btn.classList.toggle('active', btn.dataset.filter === acti
+          -veFilter);                                                    
+      466 +    const active = btn.dataset.filter === activeFilter;       
+      467 +    btn.classList.toggle('active', active);                   
+      468 +    btn.setAttribute('aria-pressed', active ? 'true' : 'false'
+          +);                                                            
+      469    });
+      470  }
+      471  
+     ...
+      479    document.getElementById('dash-pct').textContent      = `${pc
+           t}%`;
+      480    document.getElementById('progress-fill').style.width = `${pc
+           t}%`;
+      481  
+      482 +  // progressbar ARIA 동적 업데이트                           
+      483 +  progressTrack.setAttribute('aria-valuenow', pct);           
+      484 +  progressTrack.setAttribute('aria-label', `전체 진행률 ${pct}
+          +%`);                                                          
+      485 +                                                              
+      486    // 남은 할 일 배지
+      487    const badge = document.getElementById('remaining-badge');
+      488    badge.textContent   = remaining;
+      489    badge.style.display = remaining > 0 ? 'inline-flex' : 'none'
+           ;
+      490 +  badge.setAttribute('aria-label', `남은 할 일 ${remaining}개`
+          +);                                                            
+      491  
+      492    // 오늘 추가한 항목 수
+      493    const todayStr   = new Date().toDateString();
+     ...
+      503      document.getElementById(`mini-fill-${cat}`).style.width = 
+           `${catPct}%`;
+      504    });
+      505  
+      276 -  // 완료 삭제 버튼 표시 여부                                 
+      506 +  // 완료 항목 삭제 버튼 표시                                 
+      507    listFooter.style.display = done > 0 ? 'flex' : 'none';
+      508 +                                                              
+      509 +  // 응원 메시지 — 할 일이 없을 때는 숨김                     
+      510 +  if (total === 0) {                                          
+      511 +    encourageMsg.textContent = '';                            
+      512 +    encourageMsg.classList.remove('celebrate');               
+      513 +    return;                                                   
+      514 +  }                                                           
+      515 +  const enc = ENCOURAGEMENTS.find((e) => pct >= e.min && pct <
+          += e.max);                                                     
+      516 +  if (enc) {                                                  
+      517 +    const isNew = encourageMsg.textContent !== enc.msg;       
+      518 +    encourageMsg.textContent = enc.msg;                       
+      519 +    if (pct === 100 && isNew) {                               
+      520 +      // 100% 달성 시 축하 애니메이션 (reflow 강제로 재생)    
+      521 +      encourageMsg.classList.remove('celebrate');             
+      522 +      void encourageMsg.offsetWidth;                          
+      523 +      encourageMsg.classList.add('celebrate');                
+      524 +    } else if (pct < 100) {                                   
+      525 +      encourageMsg.classList.remove('celebrate');             
+      526 +    }                                                         
+      527 +  } else {                                                    
+      528 +    encourageMsg.textContent = '';                            
+      529 +    encourageMsg.classList.remove('celebrate');               
+      530 +  }                                                           
+      531  }
+      532  
+      533  function render() {
+      534    list.innerHTML = '';
+      535  
+      536    const q = searchQuery.toLowerCase();
+      284 -  const visible = tasks                                       
+      285 -    .filter((t) => {                                          
+      286 -      if (activeFilter !== 'all' && t.category !== activeFilte
+          -r) return false;                                              
+      287 -      if (q && !t.text.toLowerCase().includes(q)) return false
+          -;                                                             
+      288 -      return true;                                            
+      289 -    })                                                        
+      290 -    .sort((a, b) => {                                         
+      291 -      if (a.completed !== b.completed) return a.completed ? 1 
+          -: -1;                                                         
+      292 -      return new Date(b.createdAt) - new Date(a.createdAt);   
+      293 -    });                                                       
+      537 +  const filtered = tasks.filter((t) => {                      
+      538 +    if (activeFilter !== 'all' && t.category !== activeFilter)
+          + return false;                                                
+      539 +    if (q && !t.text.toLowerCase().includes(q)) return false; 
+      540 +    return true;                                              
+      541 +  });                                                         
+      542  
+      543 +  const visible = getSortedVisible(filtered);                 
+      544 +                                                              
+      545    if (visible.length === 0) {
+      546      let msg;
+      547      if (q) {
+     ...
+      551      } else {
+      552        msg = '이 카테고리에 할 일이 없습니다.';
+      553      }
+      304 -    list.innerHTML = `<p class="empty">${msg}</p>`;           
+      554 +    const p = document.createElement('p');                    
+      555 +    p.className = 'empty';                                    
+      556 +    p.textContent = msg;                                      
+      557 +    list.appendChild(p);                                      
+      558      renderDashboard();
+      559      return;
+      560    }
+      561  
+      562 +  // DocumentFragment로 DOM 조작 최소화 (100+ 항목 성능 대응) 
+      563 +  const fragment = document.createDocumentFragment();         
+      564 +                                                              
+      565    visible.forEach((task) => {
+      566      const cat = CATEGORIES[task.category] ?? CATEGORIES.work;
+      567  
+      312 -    const li = document.createElement('li');                  
+      568 +    const li      = document.createElement('li');             
+      569      li.className  = 'task-item' + (task.completed ? ' complete
+           d' : '');
+      570      li.dataset.id = task.id;
+      571  
+      572 +    // 수동 정렬 모드에서만 드래그 핸들 표시                  
+      573 +    if (sortMode === 'manual') {                              
+      574 +      const handle         = document.createElement('span');  
+      575 +      handle.className     = 'drag-handle';                   
+      576 +      handle.textContent   = '⠿';                             
+      577 +      handle.title         = '드래그하여 순서 변경';          
+      578 +      handle.setAttribute('aria-hidden', 'true');             
+      579 +      li.appendChild(handle);                                 
+      580 +    }                                                         
+      581 +                                                              
+      582      const checkbox   = document.createElement('input');
+      583      checkbox.type    = 'checkbox';
+      584      checkbox.checked = task.completed;
+      585 +    checkbox.setAttribute('aria-label', `완료: ${task.text}`);
+      586      checkbox.addEventListener('change', () => toggleTask(task.
+           id));
+      587  
+      588      const content     = document.createElement('div');
+     ...
+      608      const del = document.createElement('button');
+      609      del.className   = 'delete-btn';
+      610      del.textContent = '✕';
+      344 -    del.setAttribute('aria-label', '삭제');                   
+      611 +    del.setAttribute('aria-label', `${task.text} 삭제`);      
+      612      del.addEventListener('click', () => deleteTask(task.id));
+      613  
+      614      li.append(checkbox, content, tag, del);
+      348 -    list.appendChild(li);                                     
+      615 +                                                              
+      616 +    bindDnD(li, task.id);                                     
+      617 +    fragment.appendChild(li);                                 
+      618    });
+      619  
+      351 -  // 애니메이션 클래스 — 해당 항목만 적용                     
+      620 +  list.appendChild(fragment);                                 
+      621 +                                                              
+      622 +  // 추가/토글 애니메이션 — 해당 항목에만 적용                
+      623    if (lastAddedId !== null) {
+      624      list.querySelector(`[data-id="${lastAddedId}"]`)?.classLis
+           t.add('entering');
+      625      lastAddedId = null;
+     ...
+      633  }
+      634  
+      635  // ═══════════════════════════════════════════════════════════
+           ═══
+      636 +//  오늘의 격언                                               
+      637 +// ═══════════════════════════════════════════════════════════
+          +═══                                                           
+      638 +                                                              
+      639 +// 날짜 기반 인덱스 — 하루 동안 동일한 격언 표시              
+      640 +function showDailyQuote() {                                   
+      641 +  const idx = Math.floor(Date.now() / 86400000) % QUOTES.lengt
+          +h;                                                            
+      642 +  const q   = QUOTES[idx];                                    
+      643 +  quoteText.textContent = `"${q.text}" — ${q.author}`;        
+      644 +}                                                             
+      645 +                                                              
+      646 +// ═══════════════════════════════════════════════════════════
+          +═══                                                           
+      647  //  유틸
+      648  // ═══════════════════════════════════════════════════════════
+           ═══
+      649  
+     ...
+      660    return new Date(isoString).toLocaleDateString('ko-KR');
+      661  }
+      662  
+      381 -/** 키보드 단축키 사용 시 우하단 피드백 토스트 */             
+      663 +/** 짧은 피드백 토스트 (기본 1.4초) */                        
+      664  function showToast(msg) {
+      665    clearTimeout(toastTimer);
+      384 -  shortcutsHint.textContent = msg;                            
+      385 -  shortcutsHint.classList.add('show');                        
+      386 -  toastTimer = setTimeout(() => shortcutsHint.classList.remove
+          -('show'), 1400);                                              
+      666 +  toast.textContent = msg; // textContent로 XSS 방지          
+      667 +  toast.classList.add('show');                                
+      668 +  toastTimer = setTimeout(() => toast.classList.remove('show')
+          +, 1400);                                                      
+      669  }
+      670  
+      389 -/** 입력 필드 흔들기 — 빈 값 제출 시 피드백 */                
+      671 +/** 삭제 직후 Undo 버튼을 포함한 토스트 (5초) */              
+      672 +function showUndoToast(taskText) {                            
+      673 +  clearTimeout(toastTimer);                                   
+      674 +  clearTimeout(undoTimer);                                    
+      675 +                                                              
+      676 +  toast.innerHTML = '';                                       
+      677 +  const msg = document.createElement('span');                 
+      678 +  msg.textContent = `'${taskText}' 삭제됨`;                   
+      679 +                                                              
+      680 +  const btn       = document.createElement('button');         
+      681 +  btn.className   = 'undo-btn';                               
+      682 +  btn.textContent = '되돌리기';                               
+      683 +  btn.addEventListener('click', () => {                       
+      684 +    clearTimeout(toastTimer);                                 
+      685 +    clearTimeout(undoTimer);                                  
+      686 +    toast.classList.remove('show');                           
+      687 +    undoDelete();                                             
+      688 +  });                                                         
+      689 +                                                              
+      690 +  toast.append(msg, btn);                                     
+      691 +  toast.classList.add('show');                                
+      692 +                                                              
+      693 +  toastTimer = setTimeout(() => toast.classList.remove('show')
+          +, 5000);                                                      
+      694 +  // 5초 후 undo 스택 만료 — 그 이후엔 되돌리기 불가          
+      695 +  undoTimer  = setTimeout(() => { undoStack = null; }, 5000); 
+      696 +}                                                             
+      697 +                                                              
+      698 +/** 빈 값 제출 시 입력 필드 흔들기 */                         
+      699  function shake(el) {
+      700    el.style.animation = 'none';
+      392 -  el.getBoundingClientRect(); // reflow                       
+      701 +  el.getBoundingClientRect(); // reflow 강제                  
+      702    el.style.animation = 'shakeInput 0.35s ease';
+      703    el.addEventListener('animationend', () => { el.style.animati
+           on = ''; }, { once: true });
+      704  }
+      705  
+      706 +/** 스크린 리더에게 메시지 전달 (aria-live) */                
+      707 +function announce(msg) {                                      
+      708 +  srAnnouncer.textContent = '';                               
+      709 +  requestAnimationFrame(() => { srAnnouncer.textContent = msg;
+          + });                                                          
+      710 +}                                                             
+      711 +                                                              
+      712 +/** 저장을 300ms 디바운스하여 빠른 연속 조작 시 localStorage  
+          +쓰기 최소화 */                                                
+      713 +function debouncedSave() {                                    
+      714 +  clearTimeout(saveTimer);                                    
+      715 +  saveTimer = setTimeout(save, 300);                          
+      716 +}                                                             
+      717 +                                                              
+      718  function save() {
+      719    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+      720  }
+     ...
+      722  function load() {
+      723    try {
+      724      const data = JSON.parse(localStorage.getItem(STORAGE_KEY))
+            ?? [];
+      725 +    // category 필드 없는 구버전 데이터 호환                  
+      726      return data.map((t) => ({ category: 'work', ...t }));
+      727    } catch {
+      728      return [];
+
+● Both files are done. Let me do a quick sanity check on the key ID references
+  between the three files.
+
+  Searched for 2 patterns (ctrl+o to expand)
+
+● All IDs align perfectly. The app is complete with all requested features:
+
+  What was added in this final pass:
+
+  - Data export/import — JSON download with date-stamped filename; file upload
+  with merge-vs-replace prompt; duplicate ID check on merge
+  - Sort options — newest/oldest/category/alpha/manual, persisted to
+  localStorage; getSortedVisible() applies completed-to-bottom rule before each
+  sort key
+  - Drag-and-drop — bindDnD() activates only in manual sort mode; drag handle
+  (⠿) renders per-item; order is persisted by reordering tasks[] directly
+  - Performance — DocumentFragment for batch DOM insertion; 200ms debounce on
+  search; 300ms debounce on save (debouncedSave)
+  - Accessibility — .sr-only + aria-live="assertive" for srAnnouncer; announce()
+   for add/restore actions; aria-pressed on filter/theme buttons; aria-valuenow
+  updated on progressbar; aria-label on checkboxes/delete buttons
+  - Duplicate warning — two-tap pattern: first tap warns, second tap (same text)
+   adds
+  - Undo delete — undoStack stores {task, index}; restored via Array.splice at
+  original position; 5-second toast with "되돌리기" button; Alt+Z shortcut;
+  undoTimer expires stack after 5s
+  - Daily quote — Math.floor(Date.now() / 86400000) % QUOTES.length for
+  deterministic daily rotation across 13 quotes
+  - Encouragement — 5-tier messages (1–29%, 30–59%, 60–89%, 90–99%, 100%);
+  celebrate animation fires once on reaching 100%
+
+✻ Crunched for 15m 51s
+
+> /status 
+  ⎿  Status dialog dismissed
+
+> /model                                                                        
+  ⎿  Set model to Opus 4.7
+
+> /resume 
+  ⎿  Resume cancelled
+
+> /context 
+  ⎿  Context Usage
+     ⛁ ⛀ ⛁ ⛁ ⛁ ⛀ ⛀ ⛀ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁   Opus 4.7
+     ⛁ ⛁ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶   claude-opus-4-7
+     ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶   77.3k/1m tokens (8%)
+     ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ 
+     ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶   Estimated usage by category
+     ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶   ⛁ System prompt: 8.4k tokens (0.8%)
+     ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶   ⛁ System tools: 18k tokens (1.8%)
+     ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶   ⛁ Memory files: 440 tokens (0.0%)
+     ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶   ⛁ Skills: 721 tokens (0.1%)
+     ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶   ⛁ Messages: 70.2k tokens (7.0%)
+                                               ⛶ Free space: 902.2k (90.2%)
+
+     Memory files · /memory
+     └ CLAUDE.md: 440 tokens
+
+     Skills · /skills
+
+> [Image #1] 현재 디자인은 모바일에 최적화되어 있는 것 같아. 데스크톱           
+  환경에서도 전체 화면에서 UI를 볼 수 있도록 디자인을 수정해 줘. 수정한         
+  디자인은 "web_version"이라는 새로운 폴더를 생성한 뒤, 그곳에 저장해 줘.       
+  ⎿  [Image #1]
+
+● I'll create the web_version folder with a desktop-optimized layout. The
+  current design is a centered 600px card—desktop will use a sidebar + main area
+   layout.
+
+● Bash(mkdir -p "D:/Users/netcast/vibecoding/study-02/web_version")
+  ⎿  Done
+
+● Write(web_version\index.html)
+  ⎿  Wrote 239 lines to web_version\index.html
+      1 <!DOCTYPE html>
+      2 <html lang="ko">
+      3 <head>
+      4   <meta charset="UTF-8">
+      5   <meta name="viewport" content="width=device-width, initial-scal
+        e=1.0">
+      6   <title>My Tasks — Desktop</title>
+      7   <link rel="stylesheet" href="style.css">
+      8 </head>
+      9 <body>
+     … +261 lines (ctrl+o to expand)
+
+● Now the desktop-optimized CSS:
+
+● Write(web_version\style.css)  ⎿  Wrote 985 lines to web_version\style.css
+       1 /* ══════════════════════════════════════════════
+       2    CSS 변수 — 라이트 모드
+       3    ══════════════════════════════════════════════ */
+       4 :root {
+       5   --bg-page:        #eef0f7;
+       6   --bg-shell:       #ffffff;
+       7   --bg-sidebar:     #f7f8fc;
+       8   --bg-main:        #ffffff;
+       9   --bg-card:        #ffffff;
+      10   --bg-dash:        #ffffff;
+     … +980 lines (ctrl+o to expand)
+
+● Now copy script.js to web_version (no logic changes needed since all
+  IDs/classes are preserved):
+
+● Bash(cp "D:/Users/netcast/vibecoding/study-02/script.js"
+      "D:/Users/netcast/vibecoding/study-02/web_version/script.js")
+  ⎿  Done
+
+  Listed 1 directory (ctrl+o to expand)
+
+● web_version/ is ready with three files. Summary of the desktop layout changes:
+
+  Layout transformation
+  - body now has padding: 32px and full background — no longer a centered card
+  on empty space.
+  - New .app-shell is a 1400px-max grid with 320px 1fr columns: sidebar on the
+  left, main content on the right.
+  - min-height: calc(100vh - 64px) so the shell fills the viewport.
+
+  Sidebar (left, 320px)
+  - App title + theme toggle at top
+  - Progress dashboard (vertical stack: overall bar → category mini-bars in 8px 
+  36px 1fr auto grid → today badge → encouragement)
+  - Filter chips converted from horizontal pills to vertical full-width buttons 
+  with colored dots (active state uses soft accent background, not solid fill)
+  - Data panel buttons stacked vertically
+  - Shortcut grid as space-between rows (keys ↔ description) instead of two
+  columns
+
+  Main area (right, fluid)
+  - Quote bar → search/sort row → add input row → task list — all wider and more
+   breathable
+  - #sort-select has min-width: 140px so labels don't truncate
+  - Tasks have larger text (0.98rem) and more padding (14px 18px)
+
+  Responsive fallback
+  - @media (max-width: 960px): grid collapses to single column, sidebar moves
+  above main; shortcuts panel hidden
+  - @media (max-width: 560px): same mobile-friendly behaviors as the original
+  (wrap input rows, full-width toast, hide theme label)
+
+  No JS changes — script.js is byte-identical because every ID and class name
+  was preserved.
+
+  Open web_version/index.html to view it. Storage is shared with the original
+  (localStorage key 'my-tasks'), so existing tasks will appear.
+
+✻ Baked for 3m 49s
+
+> @script.js 파일에서 다크모드 관련 함수를 찾아 줘.                             
+  ⎿  Read script.js (731 lines)
+
+● script.js에서 다크모드 관련 코드는 다음과 같이 분포되어 있습니다.
+
+  핵심 함수 (138~157줄)
+
+  toggleTheme() — script.js:142
+  function toggleTheme() {
+    isDark = !isDark;
+    localStorage.setItem(THEME_KEY, isDark ? 'dark' : 'light');
+    applyTheme(isDark, true);
+  }
+  다크/라이트 상태를 뒤집고, localStorage에 저장한 뒤 applyTheme을 호출합니다.
+
+  applyTheme(dark, animate) — script.js:148
+  function applyTheme(dark, animate = true) {
+    if (animate) {
+      document.documentElement.classList.add('theme-transitioning');
+      setTimeout(() =>
+  document.documentElement.classList.remove('theme-transitioning'), 400);
+    }
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' :
+  'light');
+    themeToggle.classList.toggle('active', dark);
+    themeToggle.setAttribute('aria-pressed', dark ? 'true' : 'false');
+    themeLabel.textContent = dark ? '다크' : '라이트';
+  }
+  실제 DOM에 테마를 반영합니다 — <html data-theme="dark|light"> 속성 변경, 토글
+  버튼 활성화 클래스/aria-pressed, 라벨 텍스트, 그리고 0.4초 전환 애니메이션.
+
+  관련 상수 / 상태
+
+  - THEME_KEY = 'my-tasks-theme' — script.js:4 (localStorage 키)
+  - isDark — script.js:46 (초기 로드 시 localStorage에서 복원)
+
+  관련 DOM 참조
+
+  - themeToggle — script.js:65
+  - themeLabel — script.js:66
+
+  호출 지점
+
+  - 초기화: applyTheme(isDark, false) — script.js:79 (페이지 로드 시 애니메이션
+  없이 적용)
+  - 클릭 이벤트: themeToggle.addEventListener('click', toggleTheme) —
+  script.js:108
+  - 키보드 단축키 (Alt+D) — script.js:128~129
+  'd': () => { toggleTheme(); showToast(isDark ? '다크 모드' : '라이트 모드');
+  },
+  'D': () => { toggleTheme(); showToast(isDark ? '다크 모드' : '라이트 모드');
+  },
+
+✻ Crunched for 13s
+
+> /doctor 
+  ⎿  Claude Code diagnostics dismissed

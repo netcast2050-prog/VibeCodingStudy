@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Tasks</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 스크린 리더 전용 라이브 리전 (시각적으로 숨김) -->
+  <div id="sr-announcer" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
+
+  <div class="card" role="main">
+
+    <!-- ── 헤더 ── -->
+    <div class="header-row">
+      <div class="header-left">
+        <h1>My Tasks</h1>
+        <span class="remaining-badge" id="remaining-badge"
+              aria-label="남은 할 일 0개">0</span>
+      </div>
+      <div class="theme-ctrl">
+        <span class="theme-label" id="theme-label">라이트</span>
+        <button class="theme-toggle" id="theme-toggle"
+                aria-label="다크 모드 전환" aria-pressed="false">
+          <span class="toggle-thumb" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── 진행률 대시보드 ── -->
+    <section class="dashboard" aria-label="진행률 통계">
+      <div class="dash-overall">
+        <div class="dash-label">
+          <span id="dash-count" aria-live="polite">0/0 완료</span>
+          <span id="dash-pct" class="dash-pct" aria-hidden="true">0%</span>
+        </div>
+        <div class="progress-track"
+             id="progress-track"
+             role="progressbar"
+             aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+             aria-label="전체 진행률 0%">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+      </div>
+      <div class="dash-bottom">
+        <div class="dash-cat-list">
+          <div class="dash-cat-item">
+            <span class="cat-dot" style="background:#4A90E2" aria-hidden="true"></span>
+            <span class="cat-name">업무</span>
+            <div class="mini-track" aria-hidden="true">
+              <div class="mini-fill" id="mini-fill-work" style="background:#4A90E2"></div>
+            </div>
+            <span class="cat-count" id="stat-work">0/0</span>
+          </div>
+          <div class="dash-cat-item">
+            <span class="cat-dot" style="background:#27AE60" aria-hidden="true"></span>
+            <span class="cat-name">개인</span>
+            <div class="mini-track" aria-hidden="true">
+              <div class="mini-fill" id="mini-fill-personal" style="background:#27AE60"></div>
+            </div>
+            <span class="cat-count" id="stat-personal">0/0</span>
+          </div>
+          <div class="dash-cat-item">
+            <span class="cat-dot" style="background:#8E44AD" aria-hidden="true"></span>
+            <span class="cat-name">공부</span>
+            <div class="mini-track" aria-hidden="true">
+              <div class="mini-fill" id="mini-fill-study" style="background:#8E44AD"></div>
+            </div>
+            <span class="cat-count" id="stat-study">0/0</span>
+          </div>
+        </div>
+        <div class="dash-today" aria-label="오늘 추가한 할 일 수">
+          <span class="today-label">오늘 추가</span>
+          <span class="today-val" id="stat-today">0</span>
+        </div>
+      </div>
+      <!-- 완료율 기반 응원 메시지 -->
+      <p class="encourage-msg" id="encourage-msg" aria-live="polite"></p>
+    </section>
+
+    <!-- ── 오늘의 격언 ── -->
+    <div class="quote-bar" aria-label="오늘의 격언">
+      <span class="quote-text" id="quote-text"></span>
+    </div>
+
+    <!-- ── 카테고리 필터 ── -->
+    <div class="filter-row" role="group" aria-label="카테고리 필터">
+      <button class="filter-btn" data-filter="all"      aria-pressed="true">전체</button>
+      <button class="filter-btn" data-filter="work"     aria-pressed="false">업무</button>
+      <button class="filter-btn" data-filter="personal" aria-pressed="false">개인</button>
+      <button class="filter-btn" data-filter="study"    aria-pressed="false">공부</button>
+    </div>
+
+    <!-- ── 검색 + 정렬 ── -->
+    <div class="search-sort-row">
+      <input type="search" id="search-input"
+             placeholder="할 일 검색..."
+             autocomplete="off"
+             aria-label="할 일 검색">
+      <select id="sort-select" aria-label="정렬 방식 선택">
+        <option value="newest">최신순</option>
+        <option value="oldest">오래된순</option>
+        <option value="category">카테고리순</option>
+        <option value="alpha">가나다순</option>
+        <option value="manual">수동 정렬</option>
+      </select>
+    </div>
+
+    <!-- ── 할 일 추가 ── -->
+    <div class="input-row">
+      <input type="text" id="task-input"
+             placeholder="새 할 일을 입력하세요..."
+             autocomplete="off"
+             aria-label="새 할 일 입력"
+             aria-describedby="input-hint">
+      <span id="input-hint" class="sr-only">Enter 키 또는 추가 버튼으로 추가합니다</span>
+      <select id="category-select" aria-label="카테고리 선택">
+        <option value="work">업무</option>
+        <option value="personal">개인</option>
+        <option value="study">공부</option>
+      </select>
+      <button id="add-btn" aria-label="할 일 추가">추가</button>
+    </div>
+
+    <!-- ── 할 일 목록 ── -->
+    <ul id="task-list" role="list" aria-label="할 일 목록"></ul>
+
+    <!-- ── 완료 항목 삭제 ── -->
+    <div class="list-footer" id="list-footer" style="display:none">
+      <button id="clear-completed-btn" class="clear-btn"
+              aria-label="완료된 항목 모두 삭제">
+        완료된 항목 모두 삭제
+      </button>
+    </div>
+
+    <!-- ── 데이터 관리 ── -->
+    <div class="data-panel">
+      <span class="data-panel-label" aria-hidden="true">데이터</span>
+      <button id="export-btn" class="data-btn"
+              aria-label="현재 할 일 목록을 JSON 파일로 내보내기">
+        내보내기 (JSON)
+      </button>
+      <button id="import-btn" class="data-btn"
+              aria-label="JSON 파일에서 할 일 목록 가져오기">
+        가져오기 (JSON)
+      </button>
+      <!-- 파일 선택은 JS에서 trigger -->
+      <input type="file" id="import-file" accept=".json"
+             style="display:none" aria-hidden="true" tabindex="-1">
+    </div>
+
+    <!-- ── 키보드 단축키 패널 ── -->
+    <div class="shortcuts-panel" aria-label="키보드 단축키 목록">
+      <p class="shortcuts-heading">키보드 단축키</p>
+      <div class="shortcuts-grid">
+        <div class="sc-item">
+          <span class="sc-keys"><kbd>Alt</kbd><span class="sc-op">+</span><kbd>N</kbd></span>
+          <span class="sc-desc">새 할 일 입력</span>
+        </div>
+        <div class="sc-item">
+          <span class="sc-keys"><kbd>Enter</kbd></span>
+          <span class="sc-desc">할 일 추가</span>
+        </div>
+        <div class="sc-item">
+          <span class="sc-keys"><kbd>Alt</kbd><span class="sc-op">+</span><kbd>D</kbd></span>
+          <span class="sc-desc">다크 모드 전환</span>
+        </div>
+        <div class="sc-item">
+          <span class="sc-keys"><kbd>Alt</kbd><span class="sc-op">+</span><kbd>1</kbd><span class="sc-op">~</span><kbd>4</kbd></span>
+          <span class="sc-desc">카테고리 필터</span>
+        </div>
+        <div class="sc-item">
+          <span class="sc-keys"><kbd>Alt</kbd><span class="sc-op">+</span><kbd>Z</kbd></span>
+          <span class="sc-desc">삭제 취소 (Undo)</span>
+        </div>
+        <div class="sc-item">
+          <span class="sc-keys"><kbd>더블클릭</kbd></span>
+          <span class="sc-desc">인라인 수정</span>
+        </div>
+        <div class="sc-item">
+          <span class="sc-keys"><kbd>Enter</kbd></span>
+          <span class="sc-desc">수정 저장</span>
+        </div>
+        <div class="sc-item">
+          <span class="sc-keys"><kbd>Esc</kbd></span>
+          <span class="sc-desc">수정 취소</span>
+        </div>
+        <div class="sc-item">
+          <span class="sc-keys"><kbd>드래그</kbd></span>
+          <span class="sc-desc">수동 정렬 이동</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.card -->
+
+  <!-- ── 토스트 알림 (단축키 피드백 + Undo 버튼) ── -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
