@@ -1,3 +1,2 @@
 최초 git을 테스트 하기 위한 내용.
-라인 추가
-라인 추가
+repository name VibeCoding -> VibeCodingStudy 변경
