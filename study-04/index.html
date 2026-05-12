@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TodoFlow</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>업무 할일 관리</h1>
+    <p id="today-date"></p>
+  </header>
+
+  <section id="progress-section">
+    <p id="progress-text">완료 0 / 전체 0 (0%)</p>
+    <div id="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+      <div id="progress-fill"></div>
+    </div>
+  </section>
+
+  <nav id="category-tabs">
+    <button class="active" data-category="all" aria-label="전체 할 일 보기">
+      전체 <span class="tab-badge">0</span>
+    </button>
+    <button data-category="업무" aria-label="업무 할 일 보기">
+      업무 <span class="tab-badge">0</span>
+    </button>
+    <button data-category="개인" aria-label="개인 할 일 보기">
+      개인 <span class="tab-badge">0</span>
+    </button>
+    <button data-category="공부" aria-label="공부 할 일 보기">
+      공부 <span class="tab-badge">0</span>
+    </button>
+  </nav>
+
+  <section id="input-section">
+    <select id="category-select" aria-label="카테고리 선택">
+      <option value="업무">업무</option>
+      <option value="개인">개인</option>
+      <option value="공부">공부</option>
+    </select>
+    <input type="text" id="todo-input" placeholder="할 일을 입력하세요..." maxlength="100" aria-label="할 일 입력">
+    <button id="add-btn" aria-label="할 일 추가">+ 추가</button>
+  </section>
+
+  <ul id="todo-list">
+    <li id="empty-msg">할 일을 추가해보세요 ✏️</li>
+  </ul>
+
+  <div id="toast" hidden>
+    <span id="toast-msg"></span>
+    <button id="undo-btn" aria-label="삭제 되돌리기">되돌리기</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
