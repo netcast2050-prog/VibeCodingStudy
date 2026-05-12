@@ -232,41 +232,24 @@ header h1 {
   width: 90px;
   flex-shrink: 0;
   padding: 9px 6px;
-  border: 2px solid #e0e7ff;
+  border: 1px solid #e2e8f0;
   border-radius: var(--radius);
-  background-color: #f5f3ff;
-  color: #6366f1;
+  background-color: #f8fafc;
+  color: #1e293b;
   font-size: 1rem;
-  font-weight: 500;
   cursor: pointer;
   outline: none;
   appearance: none;
   -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236366f1' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2394a3b8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 8px center;
   padding-right: 24px;
-  transition: border-color 0.18s, background-color 0.18s, color 0.18s;
+  transition: border-color 0.15s;
 }
 
-/* select 값에 따라 색상 변경 — JS로 data-cat 속성 설정 */
-#category-select[data-cat="업무"] {
-  border-color: var(--color-업무-ring);
-  background-color: var(--color-업무-light);
-  color: var(--color-업무);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236366f1' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-}
-#category-select[data-cat="개인"] {
-  border-color: var(--color-개인-ring);
-  background-color: var(--color-개인-light);
-  color: var(--color-개인);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23059669' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-}
-#category-select[data-cat="공부"] {
-  border-color: var(--color-공부-ring);
-  background-color: var(--color-공부-light);
-  color: var(--color-공부);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23d97706' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+#category-select:focus {
+  border-color: #a5b4fc;
 }
 
 #todo-input {

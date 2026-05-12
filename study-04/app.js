@@ -265,13 +265,8 @@ function renderDate() {
 
 /* ── select ↔ 탭 색상 연동 ── */
 function syncSelectHint() {
-  const select = document.getElementById('category-select');
-  const cat = select.value;
+  const cat = document.getElementById('category-select').value;
 
-  // select 자체 색상 (data-cat 속성으로 CSS 제어)
-  select.dataset.cat = cat;
-
-  // 탭 버튼 select-hint 클래스 갱신
   document.querySelectorAll('#category-tabs button').forEach(btn => {
     btn.classList.toggle('select-hint', btn.dataset.category === cat);
   });

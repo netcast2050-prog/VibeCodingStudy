@@ -35,6 +35,7 @@ study-04/
 ### select ↔ 탭 색상 연동
 - 입력창 카테고리 선택(select)이 바뀔 때마다 해당 탭에 컬러 ring 강조 표시
 - 필터 활성 상태(`.active`)와 독립적으로 동작 — 두 상태 동시 적용 가능
+- select 자체는 클래식 스타일(흰 배경 · 회색 테두리 · 진한 텍스트) 고정 — 선택값에 따라 색이 바뀌지 않음
 
 ### 진행률 표시
 - 전체 항목 기준 완료 퍼센트 계산 (`Math.round`)
@@ -104,7 +105,7 @@ let toastTimer    = null;  // 토스트 자동 닫힘 타이머 ID
 | `renderTabs()` | 탭 뱃지 수치 · `.active` 클래스 갱신 |
 | `renderTodoList()` | 필터된 항목 `createElement`로 동적 생성 |
 | `renderDate()` | `#today-date` — `YYYY년 M월 D일 요일` 형식 출력 |
-| `syncSelectHint()` | select 값 → 탭 `.select-hint` 클래스 + `data-cat` 동기화 |
+| `syncSelectHint()` | select 값 → 해당 카테고리 탭에 `.select-hint` 클래스 부여 (탭 ring 표시) |
 | `startEdit(li, id)` | todo-text를 `.edit-input`으로 교체, `committed` 플래그로 이중 호출 방지 |
 | `showToast(message)` | 토스트 표시 + 2초 타이머 (연속 호출 시 타이머 리셋) |
 | `hideToast()` | 토스트 즉시 닫기 (Undo 클릭 시) |
@@ -146,6 +147,18 @@ let toastTimer    = null;  // 토스트 자동 닫힘 타이머 ID
 | 개인 | 에메랄드 연배경 + 에메랄드 글자 | 에메랄드 배경 + 흰 글자 | 에메랄드 그라데이션 |
 | 공부 | 앰버 연배경 + 앰버 글자 | 앰버 배경 + 흰 글자 | 앰버 그라데이션 |
 
+### 입력 카테고리 선택(select) 스타일
+select는 선택값과 무관하게 클래식 중립 스타일을 유지합니다.
+
+| 속성 | 값 |
+|------|----|
+| 배경색 | `#f8fafc` (연한 회색) |
+| 텍스트 | `#1e293b` (진한 슬레이트) |
+| 테두리 | `1px solid #e2e8f0` |
+| 포커스 테두리 | `#a5b4fc` (연인디고) |
+
+select 값이 바뀌어도 select 자체 색상은 변하지 않으며, 대신 상단 카테고리 탭에 `.select-hint` ring이 표시되어 현재 선택 카테고리를 안내합니다.
+
 ---
 
 ## UX 세부 처리
@@ -176,6 +189,18 @@ let toastTimer    = null;  // 토스트 자동 닫힘 타이머 ID
 
 `backdrop-filter`는 Firefox 103+ 이상에서 지원됩니다.  
 미지원 브라우저에서는 반투명 효과 없이 흰 배경으로 자동 폴백됩니다.
+
+---
+
+## 변경 이력
+
+| 버전 | 변경 내용 |
+|------|-----------|
+| v1.0 | 기본 CRUD · localStorage · 카테고리 필터 · Undo 토스트 구현 |
+| v1.1 | 모바일 UX 보완 (44px 터치 타깃, iOS 줌 방지, shake 애니메이션, 말줄임표) |
+| v1.2 | 소프트 컬러 디자인 개편 (그라데이션 배경, 유리 카드, 카테고리별 색상 탭) |
+| v1.2 | select ↔ 탭 컬러 ring 연동 기능 추가 (`syncSelectHint`) |
+| v1.3 | 입력 카테고리 select 스타일을 클래식 중립 스타일로 변경 (탭 ring 연동은 유지) |
 
 ---
 
