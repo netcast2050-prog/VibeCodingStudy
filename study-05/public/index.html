@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>냉장고 셰프 🧑‍🍳</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <h1>🧑‍🍳 냉장고 셰프</h1>
+      <button id="profileBtn" class="icon-btn" aria-label="프로필 설정">👤</button>
+    </div>
+  </header>
+
+  <nav class="tab-nav" role="tablist">
+    <button class="tab-btn active" data-tab="step1" role="tab" aria-selected="true">
+      📷 재료 인식
+    </button>
+    <button class="tab-btn" data-tab="step2" role="tab" aria-selected="false">
+      🍳 레시피
+    </button>
+    <button class="tab-btn" data-tab="step3" role="tab" aria-selected="false">
+      📚 저장
+      <span id="savedBadge" class="badge" aria-label="저장된 레시피 수"></span>
+    </button>
+  </nav>
+
+  <main>
+
+    <!-- ── Step 1: 재료 인식 ─────────────────────────────── -->
+    <section id="step1" class="tab-section active" role="tabpanel">
+
+      <div class="card">
+        <p class="card-desc">냉장고 사진을 올리면 재료를 자동으로 인식해요</p>
+
+        <!-- 업로드 존 -->
+        <div id="uploadZone" class="upload-zone" tabindex="0" role="button"
+             aria-label="이미지 업로드 영역. 클릭하거나 파일을 드래그하세요">
+          <div id="uploadPlaceholder" class="upload-placeholder">
+            <span class="upload-icon">📷</span>
+            <p class="upload-text">사진을 여기에 올려주세요</p>
+            <p class="upload-hint">클릭 또는 드래그&amp;드롭</p>
+          </div>
+          <img id="previewImg" class="preview-img hidden" alt="선택된 냉장고 사진 미리보기">
+        </div>
+
+        <!-- 입력 버튼 -->
+        <div class="btn-row">
+          <label class="btn btn-outline" id="fileBtnLabel">
+            📁 파일 선택
+            <input id="fileInput" type="file" accept="image/*" hidden>
+          </label>
+          <label class="btn btn-outline" id="cameraBtnLabel">
+            📷 카메라
+            <input id="cameraInput" type="file" accept="image/*" capture="environment" hidden>
+          </label>
+        </div>
+
+        <!-- 인식 버튼 -->
+        <button id="recognizeBtn" class="btn btn-primary" disabled>
+          🔍 재료 인식하기
+        </button>
+
+        <!-- 서버 체크 -->
+        <div class="health-row">
+          <button id="healthBtn" class="btn btn-outline btn-small">🔌 서버 체크</button>
+          <span id="healthStatus" class="health-status"></span>
+        </div>
+
+        <!-- 모델 선택 (서버 체크 실패 시 표시) -->
+        <div id="modelPicker" class="model-picker hidden">
+          <p class="model-picker-title">다른 AI 모델로 시도해보세요</p>
+          <div id="modelBtns" class="model-picker-btns"></div>
+        </div>
+      </div>
+
+      <!-- 로딩 -->
+      <div id="loadingState" class="card state-card hidden">
+        <div class="spinner"></div>
+        <p>냉장고를 살펴보는 중...</p>
+        <p class="state-hint">최대 30초 정도 걸릴 수 있어요</p>
+      </div>
+
+      <!-- 오류 -->
+      <div id="errorState" class="card state-card error-card hidden">
+        <span class="state-icon">⚠️</span>
+        <p id="errorMsg">오류가 발생했습니다.</p>
+        <button id="retryBtn" class="btn btn-outline">다시 시도</button>
+      </div>
+
+      <!-- 재료 결과 카드 -->
+      <div id="ingredientsCard" class="card hidden">
+        <div class="card-header">
+          <h2>인식된 재료</h2>
+          <button id="reRecognizeBtn" class="text-btn">🔄 다시 인식</button>
+        </div>
+
+        <div id="tagContainer" class="tag-container" aria-live="polite" aria-label="인식된 재료 목록"></div>
+
+        <div id="emptyTags" class="empty-tags hidden">
+          <p>재료가 없습니다. 직접 추가해 주세요.</p>
+        </div>
+
+        <!-- 수동 추가 -->
+        <div class="add-row">
+          <input id="addInput" type="text" placeholder="재료 직접 추가..." maxlength="15"
+                 aria-label="재료 직접 추가">
+          <button id="addBtn" class="btn btn-small">추가</button>
+        </div>
+
+        <!-- 다음 단계 -->
+        <button id="goRecipeBtn" class="btn btn-primary" disabled>
+          🍳 레시피 생성하기 →
+        </button>
+      </div>
+
+    </section>
+
+    <!-- ── Step 2: 레시피 생성 ──────────────────────────── -->
+    <section id="step2" class="tab-section" role="tabpanel">
+
+      <!-- 재료 없을 때 -->
+      <div id="step2Empty" class="card coming-soon">
+        <p class="coming-icon">🥕</p>
+        <h2>재료를 먼저 인식해주세요</h2>
+        <p class="coming-desc">Step 1에서 냉장고 사진을 올리면<br>레시피를 추천해드려요</p>
+        <button class="btn btn-outline" onclick="switchTab('step1')">← 재료 인식하러 가기</button>
+      </div>
+
+      <!-- 재료 있을 때 -->
+      <div id="step2Main" class="hidden">
+
+        <!-- 재료 요약 -->
+        <div class="card">
+          <div class="card-header">
+            <h2>인식된 재료</h2>
+            <button class="text-btn" onclick="switchTab('step1')">✏️ 재료 수정</button>
+          </div>
+          <div id="summaryTags" class="tag-container"></div>
+        </div>
+
+        <!-- 섹션 헤더 -->
+        <div class="recipe-section-header">
+          <h2>오늘의 추천 레시피</h2>
+          <button id="regenBtn" class="text-btn">🔄 다른 레시피</button>
+        </div>
+
+        <!-- 스켈레톤 로딩 -->
+        <div id="recipeLoading" class="hidden">
+          <div class="skeleton-card">
+            <div class="skeleton-line sk-w60"></div>
+            <div class="skeleton-line sk-w40"></div>
+            <div class="skeleton-tags"></div>
+          </div>
+          <div class="skeleton-card">
+            <div class="skeleton-line sk-w70"></div>
+            <div class="skeleton-line sk-w35"></div>
+            <div class="skeleton-tags"></div>
+          </div>
+          <div class="skeleton-card">
+            <div class="skeleton-line sk-w55"></div>
+            <div class="skeleton-line sk-w45"></div>
+            <div class="skeleton-tags"></div>
+          </div>
+          <p class="loading-label">레시피를 만드는 중...</p>
+        </div>
+
+        <!-- 오류 -->
+        <div id="recipeError" class="card state-card error-card hidden">
+          <span class="state-icon">⚠️</span>
+          <p id="recipeErrorMsg">오류가 발생했습니다.</p>
+          <button id="retryRecipeBtn" class="btn btn-outline">다시 시도</button>
+        </div>
+
+        <!-- 레시피 카드 목록 -->
+        <div id="recipeList"></div>
+
+      </div>
+    </section>
+
+    <!-- ── Step 3: 저장된 레시피 ──────────────────────────── -->
+    <section id="step3" class="tab-section" role="tabpanel">
+
+      <!-- 빈 상태 -->
+      <div id="step3Empty" class="card coming-soon hidden">
+        <p class="coming-icon">📚</p>
+        <h2>저장된 레시피가 없어요</h2>
+        <p class="coming-desc">마음에 드는 레시피를 저장하면<br>여기서 모아볼 수 있어요</p>
+        <button class="btn btn-outline" onclick="switchTab('step1')">🍳 레시피 만들러 가기</button>
+      </div>
+
+      <!-- 저장 목록 -->
+      <div id="step3Main" class="hidden">
+        <div class="search-bar">
+          <span class="search-icon">🔍</span>
+          <input id="searchInput" type="search" placeholder="요리 이름 또는 재료 검색..."
+                 aria-label="레시피 검색">
+        </div>
+
+        <div class="filter-tabs" role="group" aria-label="난이도 필터">
+          <button class="filter-btn active" data-filter="전체">전체</button>
+          <button class="filter-btn" data-filter="쉬움">쉬움</button>
+          <button class="filter-btn" data-filter="보통">보통</button>
+          <button class="filter-btn" data-filter="어려움">어려움</button>
+        </div>
+
+        <p id="savedCountText" class="saved-count-text"></p>
+
+        <div id="savedRecipeList" aria-live="polite"></div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ── 프로필 설정 모달 ─────────────────────────────────── -->
+  <div id="profileModal" class="modal-overlay hidden"
+       role="dialog" aria-modal="true" aria-labelledby="profileModalTitle">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="profileModalTitle">👤 프로필 설정</h2>
+        <button id="closeProfileBtn" class="icon-btn modal-close" aria-label="닫기">✕</button>
+      </div>
+
+      <div class="form-section">
+        <label class="form-label" for="profileNickname">닉네임</label>
+        <input id="profileNickname" type="text" class="form-input"
+               maxlength="10" placeholder="예: 철수네 냉장고">
+      </div>
+
+      <div class="form-section">
+        <p class="form-label">기본 인분 수</p>
+        <div class="option-group" id="servingOptions">
+          <button class="option-btn" data-val="1">1인분</button>
+          <button class="option-btn active" data-val="2">2인분</button>
+          <button class="option-btn" data-val="3">3인분</button>
+          <button class="option-btn" data-val="4">4인분</button>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <p class="form-label">
+          식이제한
+          <span class="form-hint">복수 선택 가능</span>
+        </p>
+        <div class="option-group option-group-wrap" id="dietaryOptions">
+          <button class="option-btn active" data-val="">없음</button>
+          <button class="option-btn" data-val="채식">채식</button>
+          <button class="option-btn" data-val="글루텐프리">글루텐프리</button>
+          <button class="option-btn" data-val="유제품프리">유제품프리</button>
+        </div>
+      </div>
+
+      <button id="saveProfileBtn" class="btn btn-primary">저장하기</button>
+    </div>
+  </div>
+
+  <!-- 토스트 알림 -->
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
